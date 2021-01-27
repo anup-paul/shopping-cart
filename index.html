@@ -25,7 +25,7 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button class="btn btn-default"><i id="phoneMinus-button" class="fas fa-minus"></i></button>
                            <input id="count-number" type="text" class="form-control text-center" value="1">
                            <button class="btn btn-default"><i id="phonePlus-button" class="fas fa-plus"></i></button>
                         </div>
@@ -43,7 +43,7 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button class="btn btn-default"><i id="backCoverMinus-button" class="fas fa-minus"></i></button>
                            <input id="backCover-number" type="text" class="form-control text-center" value="1">
                            <button class="btn btn-default"><i id="backCoverPlus-button" class="fas fa-plus"></i></button>
 
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subTotal-amount">1,278</span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="total-amount">1,278</span></h5>
                      </div>
                   </div>
                </div>
@@ -93,11 +93,57 @@
          const phoneAmount = document.getElementById('phone-amount').innerText;
          //console.log(phoneAmount);
          const phoneAmountConvertNumber = parseFloat(phoneAmount);
-         const totalPhoneAmount = phoneAmountConvertNumber+1219;
-         console.log(totalPhoneAmount);
+         var totalPhoneAmount = phoneAmountConvertNumber+1219;
          document.getElementById('phone-amount').innerText = totalPhoneAmount;
+
+         const subTotalAmount = document.getElementById('subTotal-amount').innerText;
+         const subTotalAmountConvertNumber = parseFloat(subTotalAmount);
+         const backCoverAmount = document.getElementById('backCover-amount').innerText;
+         const backCoverAmountConvertNumber = parseFloat(backCoverAmount);
+         const subTotalCost = totalPhoneAmount + backCoverAmountConvertNumber;
+         //console.log(subTotalCost);
+         document.getElementById('subTotal-amount').innerText = subTotalCost;
+
+         const totalAmount = document.getElementById('total-amount').innerText;
+         const totalAmountConvertNumber = parseFloat(totalAmount);
+         const totalCost = subTotalCost;
+         document.getElementById('total-amount').innerText = totalCost;
       })
-      //iphone backCover plus button
+
+      //phoneMinusButton
+      const phoneMinusButton = document.getElementById('phoneMinus-button');
+      phoneMinusButton.addEventListener('click',function()
+      {
+         //console.log('clicked');
+         const countNumber = document.getElementById('count-number').value;
+         const convertNumber = parseFloat(countNumber);
+         const totalNumber = convertNumber-1;
+         document.getElementById('count-number').value = totalNumber;
+
+
+         const phoneAmount = document.getElementById('phone-amount').innerText;
+         //console.log(phoneAmount);
+         const phoneAmountConvertNumber = parseFloat(phoneAmount);
+         var totalPhoneAmount = phoneAmountConvertNumber-1219;
+         document.getElementById('phone-amount').innerText = totalPhoneAmount;
+
+
+         const subTotalAmount = document.getElementById('subTotal-amount').innerText;
+         const subTotalAmountConvertNumber = parseFloat(subTotalAmount);
+         const backCoverAmount = document.getElementById('backCover-amount').innerText;
+         const backCoverAmountConvertNumber = parseFloat(backCoverAmount);
+         const subTotalCost = totalPhoneAmount + backCoverAmountConvertNumber;
+         document.getElementById('subTotal-amount').innerText = subTotalCost;
+         
+
+         const totalAmount = document.getElementById('total-amount').innerText;
+         const totalAmountConvertNumber = parseFloat(totalAmount);
+         const totalCost = subTotalCost;
+         document.getElementById('total-amount').innerText = totalCost;
+      })
+
+
+      // backCover plus button
       const backCoverPlusButton = document.getElementById('backCoverPlus-button')
       backCoverPlusButton.addEventListener('click',function()
       {
@@ -108,9 +154,52 @@
 
          const backCoverAmount = document.getElementById('backCover-amount').innerText;
          const backCoverAmountConvertNumber = parseFloat(backCoverAmount);
-         const backCoverTotalAmount = backCoverAmountConvertNumber + 59;
+         var backCoverTotalAmount = backCoverAmountConvertNumber + 59;
          document.getElementById('backCover-amount').innerText = backCoverTotalAmount;
+
+         const subTotalAmount = document.getElementById('subTotal-amount').innerText;
+         const subTotalAmountConvertNumber = parseFloat(subTotalAmount);
+         const phoneAmount = document.getElementById('phone-amount').innerText;
+         const phoneAmountConvertNumber = parseFloat(phoneAmount);
+         const subTotalCost = phoneAmountConvertNumber + backCoverTotalAmount;
+         document.getElementById('subTotal-amount').innerText = subTotalCost;
+
+         const totalAmount = document.getElementById('total-amount').innerText;
+         const totalAmountConvertNumber = parseFloat(totalAmount);
+         const totalCost = subTotalCost;
+         document.getElementById('total-amount').innerText = totalCost;
       })
+
+      //backCoverMinusButton
+
+      const backCoverMinusButton =  document.getElementById('backCoverMinus-button');
+      backCoverMinusButton.addEventListener('click',function()
+      {
+         const backCoverNumber = document.getElementById('backCover-number').value;
+         const backCoverConvertNumber = parseFloat(backCoverNumber);
+         const backCoverTotalNumber = backCoverConvertNumber-1;
+         document.getElementById('backCover-number').value = backCoverTotalNumber;
+
+
+         const backCoverAmount = document.getElementById('backCover-amount').innerText;
+         const backCoverAmountConvertNumber = parseFloat(backCoverAmount);
+         var backCoverTotalAmount = backCoverAmountConvertNumber - 59;
+         document.getElementById('backCover-amount').innerText = backCoverTotalAmount;
+
+
+         const subTotalAmount = document.getElementById('subTotal-amount').innerText;
+         const subTotalAmountConvertNumber = parseFloat(subTotalAmount);
+         const phoneAmount = document.getElementById('phone-amount').innerText;
+         const phoneAmountConvertNumber = parseFloat(phoneAmount);
+         const subTotalCost = phoneAmountConvertNumber + backCoverTotalAmount;
+         document.getElementById('subTotal-amount').innerText = subTotalCost;
+
+         const totalAmount = document.getElementById('total-amount').innerText;
+         const totalAmountConvertNumber = parseFloat(totalAmount);
+         const totalCost = subTotalCost;
+         document.getElementById('total-amount').innerText = totalCost;
+      })
+
    </script>
 </body>
 
